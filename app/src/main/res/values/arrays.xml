@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="tab_titles">
+        <item>热门</item>
+        <item>新上榜</item>
+        <item>连载</item>
+        <item>单身“狗”</item>
+        <item>约定</item>
+        <item>等待</item>
+    </string-array>
+
+</resources>
