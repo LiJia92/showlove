@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.graphics.Matrix;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
@@ -45,7 +46,7 @@ public class EditActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
 
-//        getDisplayMetrics();
+        getDisplayMetrics();
 //
         addPicture = (FloatingActionButton) findViewById(R.id.add_picture);
 //        imageList = (ListView) findViewById(R.id.image_list);
@@ -109,7 +110,25 @@ public class EditActivity extends Activity implements View.OnClickListener {
             } else {
                 picturePath = pictureUri.getPath();
             }
-            Bitmap bitmap = BitmapFactory.decodeFile(picturePath);
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            BitmapFactory.decodeFile(picturePath, options);
+            int width = options.outWidth; // 原图宽度
+            int height = options.outHeight; //原图高度
+            float widthScale;
+            if (height / width > 5) { // 高是长的5倍或以上，则认定为长图
+                widthScale = 0.12f;
+            } else {
+                widthScale = 0.8f;
+            }
+            int targetWidth = (int) (EditActivity.displayWidth * widthScale);
+            int targetHeight = (int) (EditActivity.displayWidth * widthScale / width * height);
+            Bitmap originalBitmap = BitmapFactory.decodeFile(picturePath);
+
+            Matrix matrix = new Matrix();
+            matrix.postScale((float) targetWidth / width, (float)targetHeight / height);
+            Bitmap bitmap = Bitmap.createBitmap(originalBitmap, 0, 0, width, height, matrix, false);
+            originalBitmap.recycle();
             ImageSpan imageSpan = new ImageSpan(EditActivity.this, bitmap);
             // 创建一个SpannableString对象，以便插入用ImageSpan对象封装的图像
             String tempUrl = "<img src=\"" + pictureUri.getPath() + "\" />";
