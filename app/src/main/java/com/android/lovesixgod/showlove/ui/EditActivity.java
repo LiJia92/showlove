@@ -59,7 +59,7 @@ public class EditActivity extends Activity implements View.OnClickListener {
         contentEdit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                // 改变之前
             }
 
             @Override
