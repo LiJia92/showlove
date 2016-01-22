@@ -126,12 +126,13 @@ public class EditActivity extends Activity implements View.OnClickListener {
             Bitmap originalBitmap = BitmapFactory.decodeFile(picturePath);
 
             Matrix matrix = new Matrix();
-            matrix.postScale((float) targetWidth / width, (float)targetHeight / height);
+            matrix.postScale((float) targetWidth / width, (float) targetHeight / height);
             Bitmap bitmap = Bitmap.createBitmap(originalBitmap, 0, 0, width, height, matrix, false);
             originalBitmap.recycle();
             ImageSpan imageSpan = new ImageSpan(EditActivity.this, bitmap);
             // 创建一个SpannableString对象，以便插入用ImageSpan对象封装的图像
-            String tempUrl = "<img src=\"" + pictureUri.getPath() + "\" />";
+//            String tempUrl = "<img src=\"" + pictureUri.getPath() + "\" />";
+            String tempUrl = "<img>";
             SpannableString spannableString = new SpannableString(tempUrl);
             // 用ImageSpan对象替换你指定的字符串
             spannableString.setSpan(imageSpan, 0, tempUrl.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
