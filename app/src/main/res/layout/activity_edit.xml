@@ -44,6 +44,7 @@
                     android:id="@+id/content_edit_text"
                     style="@style/EditTextTheme"
                     android:lineSpacingExtra="4dp"
+                    android:singleLine="true"
                     app:met_floatingLabel="highlight"
                     app:met_floatingLabelAlwaysShown="true"
                     app:met_floatingLabelText="@string/hint_note_content"

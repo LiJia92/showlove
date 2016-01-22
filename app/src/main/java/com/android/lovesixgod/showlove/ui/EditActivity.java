@@ -14,11 +14,13 @@ import android.support.design.widget.FloatingActionButton;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.text.TextWatcher;
 import android.text.style.ImageSpan;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.android.lovesixgod.showlove.R;
@@ -40,6 +42,7 @@ public class EditActivity extends Activity implements View.OnClickListener {
     private ListView imageList;
     private FloatingActionButton addPicture;
     private MaterialEditText contentEdit;
+    private LinearLayout parentLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +56,23 @@ public class EditActivity extends Activity implements View.OnClickListener {
 //
         addPicture.setOnClickListener(this);
         contentEdit = (MaterialEditText) findViewById(R.id.content_edit_text);
+        contentEdit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
 
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        parentLayout = (LinearLayout) findViewById(R.id.edit_parent);
         showKeyBoard();
     }
 
