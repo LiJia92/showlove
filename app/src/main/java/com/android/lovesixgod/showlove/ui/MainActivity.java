@@ -2,7 +2,6 @@ package com.android.lovesixgod.showlove.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -16,11 +15,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.android.lovesixgod.showlove.R;
 import com.android.lovesixgod.showlove.adapter.MyViewPagerAdapter;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void configViews() {
-//        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
 
         // ViewPager绑定数据
         myViewPagerAdapter = new MyViewPagerAdapter(getSupportFragmentManager(), titles, fragments);
@@ -91,13 +88,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // 抽屉菜单填充内容
         navigationView.inflateHeaderView(R.layout.header_navigation);
         navigationView.inflateMenu(R.menu.menu_navigation);
-
-        // 加入CollapsingToolbarLayout
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        CollapsingToolbarLayout collaspingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-        collaspingToolbar.setTitle("秀恩爱");
-        ImageView imageview = (ImageView) findViewById(R.id.backdrop);
-        Picasso.with(this).load("http://pic22.nipic.com/20120715/3247605_105802332102_2.jpg").into(imageview);
 
         floatingActionButton.setOnClickListener(this);
     }
